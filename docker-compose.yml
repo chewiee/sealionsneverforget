@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+  django:
+    build: ./django_root
+    command: python3 manage.py runserver 0.0.0.0:8003
+    volumes:
+      - ./django_root:/code
+    ports:
+      - "8003:8003"
+    depends_on:
+      - db
